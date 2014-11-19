@@ -23,7 +23,7 @@ class portapack::nodes (
     'linux': {
 
       @@host { "${student}-linux":
-        ip => $::ipaddress_eth1,
+        ip => $::ipaddress,
       }
 
       user { $student:
