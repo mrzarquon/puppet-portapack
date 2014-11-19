@@ -1,13 +1,12 @@
 <user-mapping>
 
-<authorize username="testuser" password="password">
-
-<% @hostnames.each do |host| -%>
-  <connection name="<%= host %>">        
+<% @students.each do |student| -%>
+<authorize username="<%= student %>" password="puppetlabs">
+  <connection name="<%= student %>-win">        
     <protocol>rdp</protocol>
-    <param name="hostname"><%= host %></param>
+    <param name="hostname"><%= student %>-win</param>
     <param name="port">3389</param>
-    <param name="username">student</param>
+    <param name="username"><%= student %></param>
     <param name="password">P4ssW0rd!</param>
     <param name="security">tls</param>
     <param name="ignore-cert">true</param>
@@ -15,11 +14,14 @@
     <param name="height">720</param>
     <param name="color">8</param>
   </connection>
-<% end -%>
-
-
+  <connection name="<%= student %>-linux">        
+    <protocol>ssh</protocol>
+    <param name="hostname"><%= student %>-linux</param>
+    <param name="username"><%= student %></param>
+    <param name="password">P4ssW0rd!</param>
+  </connection>
 </authorize>
 
-
+<% end -%>
 
 </user-mapping>

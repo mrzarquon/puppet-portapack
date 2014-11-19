@@ -1,4 +1,8 @@
-class portapack {
+class portapack (
+  $studentarray = ['bob','jill','adam']
+) {
+
+
 
 
 

@@ -1,12 +1,6 @@
-class portapack::guac {
+class portapack::guac inherits portapack {
 
-  $hostnames = [
-    'ip-10-0-0-215.us-west-2.compute.internal', 
-    'ip-10-0-0-216.us-west-2.compute.internal',
-    'ip-10-0-0-217.us-west-2.compute.internal',
-    'ip-10-0-0-214.us-west-2.compute.internal',
-    'ip-10-0-0-218.us-west-2.compute.internal' ]
-
+  $students = $portapack::studentarray
 
   Package {
     require => Class['apt'],
@@ -42,5 +36,7 @@ class portapack::guac {
     enable    => true,
     subscribe => File['/etc/guacamole/guacamole.properties'],
   }
+
+  Host <<| |>>
 
 }
