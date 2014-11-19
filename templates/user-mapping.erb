@@ -1,0 +1,25 @@
+<user-mapping>
+
+<authorize username="testuser" password="password">
+
+<% @hostnames.each do |host| -%>
+  <connection name="<%= host %>">        
+    <protocol>rdp</protocol>
+    <param name="hostname"><%= host %></param>
+    <param name="port">3389</param>
+    <param name="username">student</param>
+    <param name="password">P4ssW0rd!</param>
+    <param name="security">tls</param>
+    <param name="ignore-cert">true</param>
+    <param name="width">1280</param>
+    <param name="height">720</param>
+    <param name="color">8</param>
+  </connection>
+<% end -%>
+
+
+</authorize>
+
+
+
+</user-mapping>
