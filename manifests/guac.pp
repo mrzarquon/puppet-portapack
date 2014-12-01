@@ -37,6 +37,12 @@ class portapack::guac inherits portapack {
     subscribe => File['/etc/guacamole/guacamole.properties'],
   }
 
+  service { 'guacd':
+    ensure    => running,
+    enable    => true,
+    subscribe => File['/etc/guacamole/guacamole.properties'],
+  }
+
   Host <<| |>>
 
 }

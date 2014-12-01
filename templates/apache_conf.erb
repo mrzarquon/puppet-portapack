@@ -1,0 +1,37 @@
+# ************************************
+# Vhost template in module puppetlabs-apache
+# Managed by Puppet
+# ************************************
+
+<VirtualHost *:443>
+  ServerName ec2-54-149-45-23.us-west-2.compute.amazonaws.com
+
+  ## Vhost docroot
+  DocumentRoot "/var/www/"
+
+  ## Directories, there should at least be a declaration for /var/www/
+
+  <Directory "/var/www/">
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Require all granted
+  </Directory>
+
+  ## Logging
+  ErrorLog "/var/log/apache2/ec2-54-149-45-23.us-west-2.compute.amazonaws.com_error_ssl.log"
+  ServerSignature Off
+  CustomLog "/var/log/apache2/ec2-54-149-45-23.us-west-2.compute.amazonaws.com_access_ssl.log" combined
+
+  ## Proxy rules
+  ProxyRequests Off
+  ProxyPass /guacamole ajp://localhost:8009/guacamole max=20 flushpackets=on
+  <Location /guacamole>
+    ProxyPassReverse ajp://localhost:8009/guacamole
+  </Location>
+
+  ## SSL directives
+  SSLEngine on
+  SSLCertificateFile      "/etc/guacamole/public.key"
+  SSLCertificateKeyFile   "/etc/guacamole/private.key"
+  SSLCACertificatePath    "/etc/ssl/certs"
+</VirtualHost>
